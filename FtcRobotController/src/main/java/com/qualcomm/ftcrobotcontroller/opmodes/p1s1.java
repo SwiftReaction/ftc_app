@@ -59,6 +59,7 @@ public class p1s1 extends OpMode {
 
         rightMotor.setDirection(DcMotor.Direction.REVERSE);
 
+        //Apparently have to comment out this here reset_encoders
         leftMotor.setMode(DcMotorController.RunMode.RESET_ENCODERS);
         rightMotor.setMode(DcMotorController.RunMode.RESET_ENCODERS);
     }
