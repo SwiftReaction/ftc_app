@@ -83,13 +83,21 @@
     <orderEntry type="library" exported="" name="Analytics-release-" level="project" />
     <orderEntry type="library" exported="" name="android-support-v4" level="project" />
     <orderEntry type="library" exported="" name="Hardware-release-" level="project" />
+<<<<<<< Updated upstream
 <<<<<<< HEAD
     <orderEntry type="library" exported="" name="FtcCommon-release-" level="project" />
+=======
+    <orderEntry type="library" exported="" name="RobotCore-release-" level="project" />
+<<<<<<< HEAD
+>>>>>>> Stashed changes
     <orderEntry type="library" exported="" name="usb-android-19" level="project" />
     <orderEntry type="library" exported="" name="effects-android-19" level="project" />
     <orderEntry type="library" exported="" name="maps-android-19" level="project" />
 =======
+<<<<<<< Updated upstream
     <orderEntry type="library" exported="" name="RobotCore-release-" level="project" />
+=======
+>>>>>>> Stashed changes
 >>>>>>> ftctechnh/master
   </component>
 </module>
