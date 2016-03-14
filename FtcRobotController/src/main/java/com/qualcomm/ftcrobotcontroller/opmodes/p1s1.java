@@ -81,7 +81,7 @@ public class p1s1 extends OpMode {
         Log.i("FtcRobotController", "IMU Init method finished in: "
                 + (-(systemTime - (systemTime = System.nanoTime()))) + " ns.");
     }
-    public void turn() {
+    /*public void turn() {
         systemTime = System.nanoTime();
         boschBNO055.startIMU();//Set up the IMU as needed for a continual stream of I2C reads.
         Log.i("FtcRobotController", "IMU Start method finished in: "
@@ -96,7 +96,7 @@ public class p1s1 extends OpMode {
         }
 
         rightMotor.setPower(0);
-    }
+    }*/
 
     //This makes us tell the motors how far to travel, and which tracks to move
     public void drive (double numberOfSquares, double power, String mode) {
@@ -171,7 +171,7 @@ public class p1s1 extends OpMode {
 //        drive(2, motorPower, "both"); // move 2 squares forward
 
         drive(2,motorPower,"both");
-        turn();
+        //turn();
     }
     //Not relevant because we just run the program once
     @Override

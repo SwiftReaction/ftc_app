@@ -15,23 +15,27 @@ public class ArmControl extends OpMode {
     public void init() {
         leftArm = hardwareMap.dcMotor.get("left_arm");
         rightArm = hardwareMap.dcMotor.get("right_arm");
+        leftArm.setDirection(DcMotor.Direction.REVERSE);//reversing the left motor for testing
     }
 
     @Override
     public void loop() {
-        if (gamepad2.right_stick_y < 0.0) {
-            leftArm.setPower(-0.2);
-            rightArm.setPower(-0.2);
+        /*if (gamepad2.right_stick_y < 0.0) {
+            leftArm.setPower(gamepad2.right_stick_y);
+            rightArm.setPower(gamepad2.right_stick_y);
         }
         else if(gamepad2.right_stick_y > 0.0) {
-            leftArm.setPower(1.0);
-            rightArm.setPower(1.0);
+            leftArm.setPower(gamepad2.right_stick_y);
+            rightArm.setPower(gamepad2.right_stick_y);
         }
         else {
             leftArm.setPower(0);
             rightArm.setPower(0);
-        }
+        }*/
+        leftArm.setPower(gamepad2.right_stick_y);
+        rightArm.setPower(gamepad2.right_stick_y);
     }
+
 
 }
 
