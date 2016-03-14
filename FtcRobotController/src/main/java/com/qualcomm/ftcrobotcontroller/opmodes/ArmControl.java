@@ -19,18 +19,19 @@ public class ArmControl extends OpMode {
 
     @Override
     public void loop() {
-        if (gamepad1.y) {
+        if (gamepad2.right_stick_y < 0.0) {
+            leftArm.setPower(-0.2);
+            rightArm.setPower(-0.2);
+        }
+        else if(gamepad2.right_stick_y > 0.0) {
             leftArm.setPower(1.0);
             rightArm.setPower(1.0);
-        }
-        else if(gamepad1.a) {
-            leftArm.setPower(-0.5);
-            rightArm.setPower(-.5);
         }
         else {
             leftArm.setPower(0);
             rightArm.setPower(0);
         }
     }
+
 }
 
