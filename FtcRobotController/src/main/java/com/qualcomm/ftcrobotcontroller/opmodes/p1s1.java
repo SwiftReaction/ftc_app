@@ -1,11 +1,15 @@
 package com.qualcomm.ftcrobotcontroller.opmodes;
 
+import android.util.Log;
+
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorController;
-
-
-
+import android.util.Log;
+import com.qualcomm.ftcrobotcontroller.opmodes.sensorCode;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.exception.RobotCoreException;
+import com.qualcomm.robotcore.hardware.DcMotor;
 import java.lang.*;
 
 
@@ -15,6 +19,13 @@ import java.lang.*;
 
 //Currently 1 square drives about 51cm - arka & benjamin 10th march
 public class p1s1 extends OpMode {
+    sensorCode boschBNO055;
+
+    //The following arrays contain both the Euler angles reported by the IMU (indices = 0) AND the
+    // Tait-Bryan angles calculated from the 4 components of the quaternion vector (indices = 1)
+    volatile double[] rollAngle = new double[2], pitchAngle = new double[2], yawAngle = new double[2];
+
+    long systemTime;//Relevant values of System.nanoTime
     //This declares two motors
     DcMotor rightMotor;
     DcMotor leftMotor;
@@ -22,9 +33,10 @@ public class p1s1 extends OpMode {
     //This declares the constants we'll use to work out how many counts we need
     final static int ENCODER_CPR = 757;     //Encoder Counts per Revolution
     final static double GEAR_RATIO = 56/24;      //Gear Ratio
-    final static double WHEEL_DIAMETER = 0.08/Math.PI;     //Diameter of the wheel in m
-    final static double CIRCUMFERENCE = 0.09;
+    final static double WHEEL_DIAMETER = 0.1/Math.PI;     //Diameter of the wheel in m
+    final static double CIRCUMFERENCE = 0.1;
     //Works out the number of encoder counts we need given the number of squares we have to travel
+
     public double returnCountsFromNumberOfSquares (double squares) {
 
 //        double distance2 = squares*0.61;
@@ -34,8 +46,8 @@ public class p1s1 extends OpMode {
         double valueToReturn = ENCODER_CPR * ROTATIONS * GEAR_RATIO;
         telemetry.addData("Motor Target", valueToReturn);
         return valueToReturn;
-
     }
+
     //Works out the number of encoder counts we need given the distance we have to travel
     public double returnCountsFromDistance (double distance) {
         double ROTATIONS = distance/CIRCUMFERENCE;
@@ -57,7 +69,39 @@ public class p1s1 extends OpMode {
 >>>>>>> refs/remotes/origin/master
         leftMotor.setMode(DcMotorController.RunMode.RESET_ENCODERS);
         rightMotor.setMode(DcMotorController.RunMode.RESET_ENCODERS);
+
+        try {
+            boschBNO055 = new sensorCode(hardwareMap, "bno055"
+
+                    //The following was required when the definition of the "I2cDevice" class was incomplete.
+                    //, "cdim", 5
+
+                    , (byte)(sensorCode.BNO055_ADDRESS_A * 2)//By convention the FTC SDK always does 8-bit I2C bus
+                    //addressing
+                    , (byte)sensorCode.OPERATION_MODE_IMU);
+        } catch (RobotCoreException e){
+            Log.i("FtcRobotController", "Exception: " + e.getMessage());
+        }
+
+        Log.i("FtcRobotController", "IMU Init method finished in: "
+                + (-(systemTime - (systemTime = System.nanoTime()))) + " ns.");
     }
+    /*public void turn() {
+        systemTime = System.nanoTime();
+        boschBNO055.startIMU();//Set up the IMU as needed for a continual stream of I2C reads.
+        Log.i("FtcRobotController", "IMU Start method finished in: "
+                + (-(systemTime - (systemTime = System.nanoTime()))) + " ns.");
+
+        boschBNO055.getIMUGyroAngles(rollAngle, pitchAngle, yawAngle);
+        double currentYawAngle = yawAngle[0];
+
+        while (yawAngle[0] < currentYawAngle+90) {
+            boschBNO055.getIMUGyroAngles(rollAngle, pitchAngle, yawAngle);
+            rightMotor.setPower(0.5);
+        }
+
+        rightMotor.setPower(0);
+    }*/
 
     //This makes us tell the motors how far to travel, and which tracks to move
     public void drive (double numberOfSquares, double power, String mode) {
@@ -112,11 +156,10 @@ public class p1s1 extends OpMode {
     @Override
     public void start() {
         //Tells us how far the robot has to travel to turn 90 degrees
-        double distanceToTurn90Degrees = .67;
-        double motorPower = 0.5;
+        double distanceToTurn90Degrees = .68;
+        double motorPower = 0.75;
 
         telemetry.addData("About to start", "0");
-
     //    leftMotor.setPower(0.5);
 
         //drive(1, motorPower, "both"); //forward 1 squares (50 cm) // 0.61
@@ -129,11 +172,11 @@ public class p1s1 extends OpMode {
 //            e.printStackTrace();
 //        }
 
-        drive(distanceToTurn90Degrees, motorPower, "left"); //90 degress anticlockwise
+//        drive(distanceToTurn90Degrees, motorPower, "left"); //90 degress anticlockwise
 //        drive(2, motorPower, "both"); // move 2 squares forward
 
-      //  stop();
-
+        drive(2,motorPower,"both");
+        //turn();
     }
     //Not relevant because we just run the program once
     @Override
