@@ -39,7 +39,6 @@ public class ArmAndServoControl extends OpMode {
         }*/
         leftArm.setPower(gamepad2.right_stick_y);
         rightArm.setPower(gamepad2.right_stick_y);
-
-        servo.setPosition(gamepad2.left_stick_x);
+        servo.setPosition(0.5 + 0.5 * gamepad2.left_stick_y);
     }
 }

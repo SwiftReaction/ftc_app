@@ -73,6 +73,7 @@ public class FtcOpModeRegister implements OpModeRegister {
     manager.register("gyroVals", GyroVals.class);
     manager.register("normalDrive", normalDrive.class);
     manager.register("ArmControl",ArmControl.class);
+    manager.register("ArmAndServoControl", ArmAndServoControl.class);
 
     /*
      * Uncomment any of the following lines if you want to register an op mode.
