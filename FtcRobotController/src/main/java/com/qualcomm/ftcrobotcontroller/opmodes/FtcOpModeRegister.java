@@ -55,7 +55,7 @@ public class FtcOpModeRegister implements OpModeRegister {
      * If two or more op modes are registered with the same name, the app will display an error.
      */
 
-<<<<<<< HEAD
+
     manager.register("NullOp", NullOp.class);
 
     //manager.register("MatrixK9TeleOp", MatrixK9TeleOp.class);
@@ -66,21 +66,18 @@ public class FtcOpModeRegister implements OpModeRegister {
     manager.register("opticalDistanceSensorTest", opticalDistanceSensorTest.class);
 
 
-=======
+
     manager.register("p1s1", p1s1.class);
     manager.register("p1s1COPY", p1s1COPY.class);
-<<<<<<< Updated upstream
->>>>>>> refs/remotes/origin/master
+
+
     manager.register("gyroVals", GyroVals.class);
     manager.register("normalDrive", normalDrive.class);
     manager.register("ArmControl",ArmControl.class);
     manager.register("ArmAndServoControl", ArmAndServoControl.class);
-=======
->>>>>>> master
     manager.register("gyroVals", GyroVals.class);
     manager.register("normalDrive", normalDrive.class);
     manager.register("ArmControl",ArmControl.class);
->>>>>>> Stashed changes
 
     /*
      * Uncomment any of the following lines if you want to register an op mode.
