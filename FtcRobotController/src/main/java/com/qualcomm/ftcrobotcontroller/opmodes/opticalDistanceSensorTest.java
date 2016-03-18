@@ -39,10 +39,9 @@ public class opticalDistanceSensorTest extends OpMode {
         //Parameters:
         //enable - true to enable; false to disable
 
-
         telemetry.addData("ODS.getLightDetected()", ODS.getLightDetected());
         telemetry.addData("ODS.getLightDetectedRaw()", ODS.getLightDetectedRaw());
-        telemetry.addData("Right Position", ODS.;
+        telemetry.addData("Right Position", ODS);
     }
 
 
