@@ -62,11 +62,10 @@ public class p1s1 extends OpMode {
         rightMotor = hardwareMap.dcMotor.get("motor_1");
         leftMotor = hardwareMap.dcMotor.get("motor_2");
         rightMotor.setDirection(DcMotor.Direction.REVERSE);
-<<<<<<< HEAD
+
 
         //Apparently have to comment out this here reset_encoders
-=======
->>>>>>> refs/remotes/origin/master
+
         leftMotor.setMode(DcMotorController.RunMode.RESET_ENCODERS);
         rightMotor.setMode(DcMotorController.RunMode.RESET_ENCODERS);
 
