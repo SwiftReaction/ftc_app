@@ -12,7 +12,8 @@ public class ArmAndServoControl extends OpMode {
     DcMotor leftArm;
     DcMotor rightArm;
 
-    Servo servo;
+    Servo leftFinger;
+    Servo rightFinger;
 
     @Override
     public void init() {
@@ -20,7 +21,8 @@ public class ArmAndServoControl extends OpMode {
         rightArm = hardwareMap.dcMotor.get("right_arm");
         leftArm.setDirection(DcMotor.Direction.REVERSE);//reversing the left motor for testing
 
-        servo = hardwareMap.servo.get("servo");
+        leftFinger = hardwareMap.servo.get("left_finger");
+        rightFinger = hardwareMap.servo.get("right_finger");
     }
 
     @Override
@@ -39,7 +41,7 @@ public class ArmAndServoControl extends OpMode {
         }*/
         leftArm.setPower(gamepad2.right_stick_y);
         rightArm.setPower(gamepad2.right_stick_y);
-        servo.setPosition(0.5 + 0.5 * gamepad2.left_stick_y);
-
+        rightFinger.setPosition(0.5 * gamepad2.left_stick_y);
+        leftFinger.setPosition(0.5 * gamepad2.left_stick_y);
     }
 }
