@@ -41,8 +41,9 @@ public class ArmAndServoControl extends OpMode {
         }*/
         leftArm.setPower(gamepad2.right_stick_y);
         rightArm.setPower(gamepad2.right_stick_y);
-        rightFinger.setPosition(.7);
-        leftFinger.setPosition(.5);
+
+        rightFinger.setPosition(gamepad2.left_stick_y);
+        leftFinger.setPosition(-gamepad2.left_stick_y);
         telemetry.addData("Left figer position", leftFinger.getPosition());
         telemetry.addData("Right finger position",rightFinger.getPosition());
     }
